@@ -1,0 +1,21 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+ <p>Temat: {{ topic }}</p> 
+ <p>Wpisy:</p>
+
+ <p href="{% url 'new_entry' topic.id %}">  Dodaj nowy wpis</a></p>
+ <a href="{% url 'new_topic' %}">Dodaj nowy temat</a>
+ <ul> 
+ {% for entry in entries %}
+
+ <li>
+ <p>{{ entry.date_added|date:'d M Y H:i' }}</p> 
+ <p>{{ entry.text|linebreaks }}</p> 
+ </li>
+ {% empty %} 
+ <li>
+ Nie ma jeszcze żadnego wpisu.
+ </li>
+ {% endfor %}
+ </ul>
+{% endblock content %}
