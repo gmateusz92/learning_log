@@ -3,14 +3,15 @@
  <p>Temat: {{ topic }}</p> 
  <p>Wpisy:</p>
 
- <p href="{% url 'new_entry' topic.id %}">  Dodaj nowy wpis</a></p>
+ <a href="{% url 'new_entry' topic.id %}"> Dodaj nowy wpis</a>
  <a href="{% url 'new_topic' %}">Dodaj nowy temat</a>
  <ul> 
  {% for entry in entries %}
 
  <li>
  <p>{{ entry.date_added|date:'d M Y H:i' }}</p> 
- <p>{{ entry.text|linebreaks }}</p> 
+ <p>{{ entry.text|linebreaks }}</p>
+  <a href="{% url 'edit_entry' entry.id %}">Edytuj wpis</a>
  </li>
  {% empty %} 
  <li>

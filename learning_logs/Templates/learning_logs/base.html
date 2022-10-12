@@ -7,9 +7,16 @@
 </head>
 
 <body>
-<a href="{% url 'index' %}">Learning Log</a> -
+<a href="{% url 'index' %}">Learning Log</a>
 <a href="{% url 'topics' %}">Topics</a>
-dddd
+{% if user.is_authenticated %}
+ Witaj, {{ user.username }}.
+<a href="{% url 'logout_user' %}">Logout</a>
+ {% else %}
+ <a href="{% url 'login_page' %}">Login</a>
+<a href="{% url 'register' %}">Register</a>
+ {% endif %}
+
 {% block content %}
 
 {% endblock %}
