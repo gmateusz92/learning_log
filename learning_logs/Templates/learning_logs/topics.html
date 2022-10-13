@@ -5,6 +5,12 @@
  {% for topic in topics %}
  <li>
 <a href="{% url 'topic' topic.id %}">{{ topic }}</a>
+
+ <form style='' method="POST" action="{% url 'delete_topic' topic.id %}">
+        {% csrf_token %}
+        <button id="delete" type="submit">Delete</button>
+    </form>
+
  </li>
  {% empty %}
  <li>Nie został jeszcze dodany żaden temat.</li>

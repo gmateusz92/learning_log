@@ -11,7 +11,17 @@
  <li>
  <p>{{ entry.date_added|date:'d M Y H:i' }}</p> 
  <p>{{ entry.text|linebreaks }}</p>
+
   <a href="{% url 'edit_entry' entry.id %}">Edytuj wpis</a>
+
+
+
+  <form style='' method="POST" action="{% url 'delete_entry' entry.id %}">
+        {% csrf_token %}
+        <button id="delete" type="submit">Delete</button>
+
+    </form>
+
  </li>
  {% empty %} 
  <li>

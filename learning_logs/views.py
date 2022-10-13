@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .forms import TopicForm, EntryForm
 from .models import Topic, Entry
 from django.http import Http404
@@ -105,3 +105,17 @@ def new_entry(request, topic_id):
             return redirect('topic', topic_id=topic_id)
     context = {'form': form, 'topic': topic}
     return render(request, 'learning_logs/new_entry.html', context)
+
+@login_required
+def delete_topic(request, topic_id):
+    topic = get_object_or_404(Topic, id=topic_id)
+    if request.method == 'POST':
+        topic.delete()
+        return redirect('topics')
+
+@login_required
+def delete_entry(request, entry_id):
+    entry = get_object_or_404(Entry, id=entry_id)
+    if request.method == 'POST':
+        entry.delete()
+        return redirect('topics')
